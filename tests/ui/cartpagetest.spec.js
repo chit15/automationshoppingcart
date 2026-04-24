@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const Loginpage = require('../../pages/Loginpage');
 const Homepage = require('../../pages/Homepage');
 const Productpage = require('../../pages/Productpage');
-const CartPage = require('../../pages/CartPage');
+const CartPage = require('../../pages/Cartpage');
 const constants = require('../../utils/constants');
 const testData = require('../../utils/testData');
 
