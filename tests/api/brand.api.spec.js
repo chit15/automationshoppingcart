@@ -22,16 +22,15 @@ test.describe('Brand API Tests', () => {
 
 
  test('API 4 - PUT to brandsList (Invalid Method)', async ({ request }) => {
-  const response = await request.get(`${constants.APIBASE_URL}/brandsList`);
+  const response = await request.put(`${constants.APIBASE_URL}/brandsList`);
 
-  // Flexible assertion (because API is inconsistent)
-  expect([200, 405]).toContain(response.status());
+  // API may still return HTTP 200, so validate payload instead
+  expect(response.status()).toBe(200);
 
   const body = await response.json();
 
-  // Strong validation (MOST IMPORTANT)
-  expect(body).toHaveProperty('message');
-  expect(body.message).toContain('This request method is not supported');
+  expect(body.responseCode).toBe(405);
+  expect(body.message).toBe('This request method is not supported.');
 });
 
 });
