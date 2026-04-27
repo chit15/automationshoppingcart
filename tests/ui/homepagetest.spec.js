@@ -25,6 +25,7 @@ test('Verify navigation to Products page', async ({ page }) => {
    await homepage.productsLink.click();
 
   await expect(page).toHaveURL(/products/);
+ // await expect(page).toHaveURL(/wrongpage/);
    const productItem = page.locator('.productinfo');
     await expect(productItem.first()).toBeVisible();
 });
