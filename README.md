@@ -97,9 +97,42 @@ npx playwright test --headed
 npx playwright test --project=chromium
 npx playwright test --project=firefox
 
-View Test Report
-# After running tests, open the HTML report
+# View Test Report
+# Reporting & Debugging
+
+This framework includes both Playwright native reporting and Allure reporting for better test analysis and debugging.
+
+🔹 Playwright HTML Report
+
+After running tests, open the default Playwright report:
+
 npx playwright show-report
+🔹 Allure Report (Advanced Dashboard)
+
+Generate and view a detailed Allure report:
+
+allure serve ./allure-results
+🚀 Features Included
+✅ HTML Test Reports
+✅ Allure Dashboard (Advanced Reporting)
+✅ Screenshots on Failure
+✅ Video Recording for Failed Tests
+✅ Trace Viewer for Debugging
+✅ CI/CD Integration with GitHub Actions
+⚙️ Install Allure (One-time setup)
+npm install -D allure-playwright
+npm install -g allure-commandline
+📦 Useful Scripts
+
+You can also use these commands for quick execution:
+
+npm run test      # Run all tests
+npm run report    # Open Playwright report
+npm run allure    # Open Allure report
+📝 Note
+Allure results are generated in the allure-results folder
+Final report is generated in allure-report
+These folders are ignored in .gitignore
 
 # Future Enhancements
 CI/CD integration (GitHub Actions)
