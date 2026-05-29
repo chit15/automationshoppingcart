@@ -1,0 +1,46 @@
+{
+  "validSearchKeywords": [
+    {
+      "keyword": "dress",
+      "description": "Search for dress returns results"
+    },
+    {
+      "keyword": "top",
+      "description": "Search for top returns results"
+    },
+    {
+      "keyword": "jeans",
+      "description": "Search for jeans returns results"
+    },
+    {
+      "keyword": "t-shirt",
+      "description": "Search for t-shirt returns results"
+    }
+  ],
+  "invalidSearchKeywords": [
+    {
+      "keyword": "xyzabc123",
+      "description": "Random string returns no results"
+    },
+    {
+      "keyword": "!@#$%",
+      "description": "Special characters return no results"
+    },
+    {
+      "keyword": "     ",
+      "description": "Only spaces return no results"
+    }
+  ],
+  "products": [
+    {
+      "name": "Blue Top",
+      "index": 0,
+      "description": "First product on listing page"
+    },
+    {
+      "name": "Men Tshirt",
+      "index": 1,
+      "description": "Second product on listing page"
+    }
+  ]
+}

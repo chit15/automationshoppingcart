@@ -7,6 +7,7 @@ const CheckoutPage = require('../../pages/Checkoutpage');
 const PaymentPage = require('../../pages/Paymentpage');
 const constants = require('../../utils/constants');
 const testData = require('../../utils/testData');
+const dataDriven = require('../../testData/ui/checkoutData.json');
 
 test('Full E2E: Login → Add → Checkout → Payment → Logout', async ({ page }) => {
 
@@ -60,4 +61,61 @@ test('Full E2E: Login → Add → Checkout → Payment → Logout', async ({ pag
 
   // Verify logout
   await expect(page.locator('text=Signup / Login')).toBeVisible();
+});
+// ========================================
+// DATA DRIVEN — MULTIPLE PAYMENT SCENARIOS
+// ========================================
+
+test.describe('E2E Data Driven — Payment Scenarios', () => {
+
+  dataDriven.validPayments.forEach(payment => {
+    test(`E2E Checkout — ${payment.description}`,
+    async ({ page }) => {
+
+      const homePage     = new HomePage(page);
+      const loginpage    = new Loginpage(page);
+      const productpage  = new Productpage(page);
+      const cartpage     = new CartPage(page);
+      const checkoutpage = new CheckoutPage(page);
+      const paymentpage  = new PaymentPage(page);
+
+      // Login
+      await loginpage.navigate(constants.LOGIN_URL);
+      await loginpage.login(
+        testData.validUser.email,
+        testData.validUser.password
+      );
+      await expect(homePage.loggedInUser).toBeVisible();
+
+      // Go to Products
+      await productpage.goToProducts();
+      await productpage.addFirstProductToCart();
+      await expect(
+        page.locator('#cartModal')
+      ).toBeVisible();
+      await productpage.clickViewCart();
+
+      // Checkout
+      await cartpage.proceedToCheckout();
+      await checkoutpage.placeOrder();
+
+      // Payment from JSON data
+      await paymentpage.makePayment(
+        payment.name,
+        payment.card,
+        payment.cvc,
+        payment.month,
+        payment.year
+      );
+
+      // Verify success
+      await expect(
+        page.locator('text=Order Placed')
+      ).toBeVisible();
+
+      // Logout
+      await homePage.logout();
+    });
+  });
+
 });

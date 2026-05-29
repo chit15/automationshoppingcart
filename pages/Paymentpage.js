@@ -13,15 +13,21 @@ class PaymentPage extends BasePage {
     this.payBtn = page.getByText('Pay and Confirm Order');
   }
 
-  async makePayment() {
-    await this.nameOnCard.fill('Test User');
-    await this.cardNumber.fill('4111111111111111');
-    await this.cvc.fill('123');
-    await this.expiryMonth.fill('12');
-    await this.expiryYear.fill('2028');
-
+ async makePayment(
+    name  = 'Test User',
+    card  = '4111111111111111',
+    cvc   = '123',
+    month = '12',
+    year  = '2028'
+  ) {
+    await this.nameOnCard.fill(name);
+    await this.cardNumber.fill(card);
+    await this.cvc.fill(cvc);
+    await this.expiryMonth.fill(month);
+    await this.expiryYear.fill(year);
     await this.payBtn.click();
   }
+
 }
 
 module.exports = PaymentPage;

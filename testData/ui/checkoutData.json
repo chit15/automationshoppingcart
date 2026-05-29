@@ -1,0 +1,43 @@
+{
+  "validPayments": [
+    {
+      "name": "Test User",
+      "card": "4111111111111111",
+      "cvc": "123",
+      "month": "12",
+      "year": "2028",
+      "description": "Valid Visa card payment"
+    }
+  ],
+  "invalidPayments": [
+    {
+      "name": "Test User",
+      "card": "1234567890123456",
+      "cvc": "000",
+      "month": "01",
+      "year": "2020",
+      "description": "Expired card payment"
+    },
+    {
+      "name": "",
+      "card": "",
+      "cvc": "",
+      "month": "",
+      "year": "",
+      "description": "Empty payment details"
+    }
+  ],
+  "addresses": [
+    {
+      "firstName": "Test",
+      "lastName": "User",
+      "address": "123 Test Street",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "zipcode": "400001",
+      "country": "India",
+      "mobile": "9999999999",
+      "description": "Valid Indian address"
+    }
+  ]
+}

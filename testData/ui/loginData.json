@@ -1,0 +1,28 @@
+{
+  "validUsers": [
+    {
+      "email": "chitraplaywright@yopmail.com",
+      "password": "password1234",
+      "description": "Standard valid user login"
+    }
+  ],
+  "invalidUsers": [
+    {
+      "email": "invalid@yopmail.com",
+      "password": "wrong123",
+      "description": "Invalid email and wrong password"
+    },
+    {
+      "email": "notexist@yopmail.com",
+      "password": "password1234",
+      "description": "Non existent email with valid password"
+    },
+    {
+      "email": "chitraplaywright@yopmail.com",
+      "password": "wrongpassword",
+      "description": "Valid email with wrong password"
+    }
+ 
+    
+  ]
+}
