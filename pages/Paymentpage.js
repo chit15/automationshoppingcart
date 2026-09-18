@@ -20,6 +20,13 @@ class PaymentPage extends BasePage {
     month = '12',
     year  = '2028'
   ) {
+  // ✅ Wait for payment page to fully load
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.nameOnCard.waitFor({ 
+    state: 'visible', 
+    timeout: 30000 
+  });
+  {
     await this.nameOnCard.fill(name);
     await this.cardNumber.fill(card);
     await this.cvc.fill(cvc);
@@ -28,6 +35,6 @@ class PaymentPage extends BasePage {
     await this.payBtn.click();
   }
 
-}
+}}
 
 module.exports = PaymentPage;

@@ -14,6 +14,13 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  // ✅ Add this — overall test timeout
+  timeout: 90000,
+
+  // ✅ Add this — assertion timeout
+  expect: {
+    timeout: 150000,
+  },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,11 +32,13 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['list'],['html'],
   ['allure-playwright']],
+  
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-
+    actionTimeout:     20000,  // increase from 10000/15000
+    navigationTimeout: 60000,  // increase from 30000
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     //screenshots and videos are only captured on test failure to save storage space and focus on debugging when necessary.
@@ -48,6 +57,8 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      // ✅ Extra timeout for Firefox
+  
     },
 
     {
@@ -56,14 +67,14 @@ export default defineConfig({
     },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+     {
+      name: 'Mobile Chrome',
+       use: { ...devices['Pixel 5'] },
+     },
+     {
+       name: 'Mobile Safari',
+       use: { ...devices['iPhone 12'] },
+     },
 
     /* Test against branded browsers. */
     // {

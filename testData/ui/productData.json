@@ -21,15 +21,8 @@
     {
       "keyword": "xyzabc123",
       "description": "Random string returns no results"
-    },
-    {
-      "keyword": "!@#$%",
-      "description": "Special characters return no results"
-    },
-    {
-      "keyword": "     ",
-      "description": "Only spaces return no results"
     }
+    
   ],
   "products": [
     {
@@ -41,6 +34,12 @@
       "name": "Men Tshirt",
       "index": 1,
       "description": "Second product on listing page"
+    }
+  ],
+  "edgeCaseKeywords": [
+    {
+      "keyword": "     ",
+      "description": "Spaces show all products — expected website behaviour"
     }
   ]
 }

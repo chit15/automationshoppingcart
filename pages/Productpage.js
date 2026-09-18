@@ -27,8 +27,19 @@ class Productpage extends BasePage {
 
   // Search for a product
   async searchProduct(keyword) {
+    await this.searchInput.clear();
     await this.searchInput.fill(keyword);
     await this.searchButton.click();
+
+    // Wait for URL to change to search results
+    await this.page.waitForURL('**/products**');
+
+    // Wait for either results or no-results state
+    await this.page.waitForFunction(() => {
+      const items = document.querySelectorAll('.productinfo');
+      const heading = document.querySelector('h2.title');
+      return items.length > 0 || heading !== null;
+    }, { timeout: 30000 });
   }
 
   async addFirstProductToCart() {
@@ -38,5 +49,6 @@ class Productpage extends BasePage {
   async clickViewCart() {
   await this.viewCartBtn.click();
 }
+
 }
 module.exports = Productpage;
